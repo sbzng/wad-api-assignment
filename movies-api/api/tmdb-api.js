@@ -32,3 +32,40 @@ export const getGenres = async () => {
         throw error;
     }
 };
+
+
+export const getPopularTV = async (page) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&page=${page}`
+        );
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Unable to fetch popular TV shows.');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+export const getTVShowDetails = async (id) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.TMDB_KEY}&language=en-US`
+        );
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || `Unable to fetch details for TV show with ID: ${id}.`);
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
