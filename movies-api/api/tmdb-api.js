@@ -69,3 +69,21 @@ export const getTVShowDetails = async (id) => {
         throw error;
     }
 };
+
+
+export const getMovieCredits = async (id) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_KEY}&language=en-US`
+        );
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message);
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw error;
+    }
+};
