@@ -4,7 +4,9 @@ import express from 'express';
 import {
     getUpcomingMovies,
     getGenres,
-    getMovieCredits
+    getMovieCredits,
+    getMovieImages,
+    searchMovies
   } from '../tmdb-api';
 
 const router = express.Router();
@@ -65,6 +67,35 @@ router.get('/tmdb/movie/:id/credits', asyncHandler(async (req, res) => {
         }
     }
 }));
+
+router.get('/tmdb/movie/:id/images', asyncHandler(async (req, res) => {
+    const id = parseInt(req.params.id);
+    if (!Regex.test(id)) {
+        res.status(404).json({message: 'The resource you requested could not be found.', status_code: 404});
+    }
+    else {
+        try {
+            const images = await getMovieImages(id);
+            res.status(200).json(images);
+        } catch (error) {
+            res.status(500).json({message: error.message, status_code: 500});
+        }
+    }
+}));
+
+router.get('/search/movie', asyncHandler(async (req, res) => {
+    const query = req.query.q; 
+    if (!query) {
+        return res.status(400).json({ message: 'Query parameter "q" is required' });
+    }
+    try {
+        const results = await searchMovies(query);
+        res.status(200).json(results);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}));
+
 
 
 

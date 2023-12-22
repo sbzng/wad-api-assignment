@@ -70,6 +70,23 @@ export const getTVShowDetails = async (id) => {
     }
 };
 
+export const getMovieImages = async (id) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/movie/${id}/images?api_key=${process.env.TMDB_KEY}`
+        );
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message);
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw error;
+    }
+};
+
 
 export const getMovieCredits = async (id) => {
     try {
@@ -106,6 +123,25 @@ export const getMovieReviews = async (id) => {
 };
 
 
+export const getPopularActors = async (page) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/person/popular?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&page=${page}`
+        );
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message || 'Unable to fetch popular TV shows.');
+        }
+
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+};
+
+
 export const getActor = async (id) => {
     try {
         const response = await fetch(
@@ -134,6 +170,55 @@ export const getActorMovieCredits = async (id) => {
         if (!response.ok) {
             const error = await response.json();
             throw new Error(error.message);
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw error;
+    }
+};
+
+
+export const searchMovies = async (query) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1&query=${query}`
+        );
+
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const searchActors = async (query) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/search/person?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1&query=${query}`
+        );
+
+        if (!response.ok) {
+            throw new Error(response.json().message);
+        }
+
+        return await response.json();
+    } catch (error) {
+        throw error;
+    }
+};
+
+export const searchTVShows = async (query) => {
+    try {
+        const response = await fetch(
+            `https://api.themoviedb.org/3/search/tv?api_key=${process.env.TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1&query=${query}`
+        );
+
+        if (!response.ok) {
+            throw new Error(response.json().message);
         }
 
         return await response.json();
