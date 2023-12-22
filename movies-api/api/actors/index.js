@@ -5,6 +5,34 @@ import { getActor, getActorMovieCredits, searchActors, getPopularActors } from '
 
 const router = express.Router();
 
+
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
+
 router.get('/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
   try {
@@ -20,6 +48,32 @@ router.get('/:id', asyncHandler(async (req, res) => {
   }
 }));
 
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
 
 router.get('/popular', asyncHandler(async (req, res) => {
   const page = req.query.page || 1; // Default to page 1 if not specified
@@ -30,6 +84,32 @@ router.get('/popular', asyncHandler(async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 }));
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
 
 
 // Get actor's movie credits
@@ -42,6 +122,32 @@ router.get('/:id/movie_credits', asyncHandler(async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 }));
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
 
 router.get('/search/person', asyncHandler(async (req, res) => {
   const query = req.query.q; 

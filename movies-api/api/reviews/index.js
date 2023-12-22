@@ -5,6 +5,33 @@ import { getMovieReviews } from '../tmdb-api';
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
+
 // Get reviews 
 router.get('/movie/:id/reviews', asyncHandler(async (req, res) => {
   const { id } = req.params;
@@ -17,6 +44,33 @@ router.get('/movie/:id/reviews', asyncHandler(async (req, res) => {
     res.status(500).json({ message: 'Error fetching reviews', error: error });
   }
 }));
+
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
 
 // Post a review 
 router.post('/movie/:id/reviews', asyncHandler(async (req, res) => {
@@ -36,6 +90,33 @@ router.post('/movie/:id/reviews', asyncHandler(async (req, res) => {
     res.status(500).json({ message: 'Error posting review', error: error });
   }
 }));
+
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
 
 // Update a review 
 router.put('/movie/:id/reviews/:reviewId', asyncHandler(async (req, res) => {
@@ -57,6 +138,33 @@ router.put('/movie/:id/reviews/:reviewId', asyncHandler(async (req, res) => {
     res.status(500).json({ message: 'Error updating review', error: error });
   }
 }));
+
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
 
 // Delete a review 
 router.delete('/movie/:id/reviews/:reviewId', asyncHandler(async (req, res) => {

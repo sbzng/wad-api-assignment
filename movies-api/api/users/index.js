@@ -5,11 +5,65 @@ import jwt from 'jsonwebtoken';
 
 const router = express.Router(); // eslint-disable-line
 
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
+
 // Get all users
 router.get('/', async (req, res) => {
     const users = await User.find();
     res.status(200).json(users);
 });
+
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
 
 // register(Create)/Authenticate User
 router.post('/', asyncHandler(async (req, res) => {
@@ -28,6 +82,33 @@ router.post('/', asyncHandler(async (req, res) => {
         res.status(500).json({ success: false, msg: 'Internal server error.' });
     }
 }));
+
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
 
 // Update a user
 router.put('/:id', async (req, res) => {
@@ -64,6 +145,33 @@ async function authenticateUser(req, res) {
     }
 }
 
+/**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
+
 router.post('/:userName/favourites', asyncHandler(async (req, res) => {
     const newFavourite = req.body.id;
     const userName = req.params.userName;
@@ -78,11 +186,66 @@ router.post('/:userName/favourites', asyncHandler(async (req, res) => {
   }
   }));
 
+  /**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
+
   router.get('/:userName/favourites', asyncHandler( async (req, res) => {
     const userName = req.params.userName;
     const user = await User.findByUserName(userName);
     res.status(200).json(user.favourites);
   }));
+
+
+  /**
+ * @swagger
+ * /api/people/tmdb/popular/page{page}:
+ *   get:
+ *    tags:
+ *     - "People"
+ *    summary: "Get popular people"
+ *    description: "Get popular people"
+ *    produces:
+ *     - "application/json"
+ *    parameters:
+ *     - in: path
+ *       name: "page"
+ *       description: "Page number"
+ *       required: true
+ *       schema:
+ *          type: integer
+ *    responses:
+ *      200:
+ *        description: "successful operation"
+ *      404:
+ *        description: "People not found"
+ *    security:
+ *      - api_key: [TMDBAPIKEY]
+ * 
+ */
 
   router.post('/:username/movie/:id/favourites', asyncHandler(async (req, res) => {
     const newFavourite = req.params.id;
